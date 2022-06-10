@@ -251,7 +251,23 @@ variable "custom_tags" {
 ## Variables related to Deployment Slots
 
 variable "deployment_slots" {
-    description = "Name of the deployment slots"
-    type = list(string)
-    default = []
+  description = "Name of the deployment slots"
+  type = list(string)
+  default = []
+}
+
+########################################################
+# Variables associated with key vault module
+########################################################
+
+variable "soft_delete_retention_days" {
+  description = "Number of retention days for soft delete"
+  type = number
+  default = 7
+}
+
+variable "key_vault_sku" {
+  description = "SKU for the key vault - standard or premium"
+  type = string
+  default = "standard"
 }

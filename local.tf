@@ -24,6 +24,10 @@ locals {
         type           = "func"
         maximum_length = 59
         }
+        "key_vault" = {
+        type           = "kv"
+        maximum_length = 24
+        }
     }
 
   resource_group = {
@@ -51,5 +55,18 @@ locals {
   log_analytics_workspace_name  = module.resource_name["log_analytics"].recommended_per_length_restriction
   app_insights_name             = module.resource_name["app_insights"].recommended_per_length_restriction
   service_plan_name             = module.resource_name["service_plan"].recommended_per_length_restriction
+  key_vault_name                = module.resource_name["key_vault"].recommended_per_length_restriction
   storage_account_name          = module.resource_name["storage_account"].lower_case
+
+  key_vault_access_policies     = {
+    "${local.function_app_name}"     = {
+      object_id     = module.function_app.function_app_identity.principal_id
+      tenant_id     = data.azurerm_client_config.current.tenant_id
+      key_permissions = []
+      certificate_permissions = []
+      secret_permissions = ["Get", "Set", "List", "Delete", "Purge"]
+      storage_permissions = []
+
+    }
+  }
 }

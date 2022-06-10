@@ -55,4 +55,4 @@ cors = {
   support_credentials = false
 }
 
-deployment_slots = []
+deployment_slots = ["stage"]

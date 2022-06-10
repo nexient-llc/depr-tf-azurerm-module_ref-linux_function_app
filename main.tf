@@ -1,3 +1,6 @@
+data "azurerm_client_config" "current" {
+}
+
 module "resource_name" {
   source    = "git::git@github.com:nexient-llc/tf-module-resource_name.git?ref=main"
 
@@ -75,4 +78,15 @@ module "function_app" {
   custom_tags                   = var.custom_tags
 
   depends_on = [module.service_plan.service_plan_name, module.storage_account.storage_account, module.service_plan.service_plan_name, module.app_insights.appins_name]
+}
+
+module "key_vault" {
+  source = "git::git@github.com:nexient-llc/tf-azurerm-module-key_vault.git?ref=feature/init"
+
+  resource_group                = local.resource_group
+  key_vault_name                = local.key_vault_name
+  soft_delete_retention_days    = var.soft_delete_retention_days
+  sku_name                      = var.key_vault_sku
+  access_policies               = local.key_vault_access_policies
+  custom_tags                   = var.custom_tags
 }
