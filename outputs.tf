@@ -35,3 +35,8 @@ output "function_app_linux_slots" {
     value = module.function_app.function_app_linux_slots
     sensitive = true
 }
+
+output "key_vault_access_policies" {
+    value = module.key_vault.access_policies_object_ids
+    sensitive = true
+}

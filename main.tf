@@ -4,7 +4,7 @@ data "azurerm_client_config" "current" {
 module "resource_name" {
   source    = "git::git@github.com:nexient-llc/tf-module-resource_name.git?ref=main"
 
-  for_each = local.resource_types
+  for_each = var.resource_types
 
   logical_product_name = var.logical_product_name
   region               = var.resource_group.location
@@ -13,6 +13,7 @@ module "resource_name" {
   instance_env         = var.instance_env
   instance_resource    = var.instance_resource
   maximum_length       = each.value.maximum_length
+  use_region_abbr      = var.use_region_abbr
 }
 
 module "resource_group" {
@@ -54,7 +55,7 @@ module "storage_account" {
 }
 
 module "function_app" {
-  source = "git::git@github.com:nexient-llc/tf-azurerm-module-linux_function_app.git?ref=feature/lifecycle"
+  source = "git::git@github.com:nexient-llc/tf-azurerm-module-linux_function_app.git?ref=main"
 
   resource_group                = local.resource_group
   storage_account               = local.storage_account
@@ -81,7 +82,7 @@ module "function_app" {
 }
 
 module "key_vault" {
-  source = "git::git@github.com:nexient-llc/tf-azurerm-module-key_vault.git?ref=feature/init"
+  source = "git::git@github.com:nexient-llc/tf-azurerm-module-key_vault.git?ref=main"
 
   resource_group                = local.resource_group
   key_vault_name                = local.key_vault_name

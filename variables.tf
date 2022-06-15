@@ -52,6 +52,51 @@ variable "instance_resource" {
   }
 }
 
+variable "use_region_abbr" {
+  description = "Whether to use region abbreviation e.g. eastus -> eus"
+  type = bool
+  default = true
+}
+
+variable "resource_types" {
+  description = "Map of cloud resource types to be used in this module"
+  type = map(object({
+    type = string
+    maximum_length = number
+  }))
+  
+  default = {
+        "resource_group" = {
+        type           = "rg"
+        maximum_length = 63
+        }
+        "app_insights" = {
+        type           = "appins"
+        maximum_length = 260
+        }
+        "service_plan" = {
+        type           = "plan"
+        maximum_length = 60
+        }
+        "log_analytics" = {
+        type           = "log"
+        maximum_length = 63
+        }
+        "storage_account" = {
+        type           = "sa"
+        maximum_length = 24
+        }
+        "function_app" = {
+        type           = "fn"
+        maximum_length = 59
+        }
+        "key_vault" = {
+        type           = "kv"
+        maximum_length = 24
+        } 
+  }
+}
+
 #################################################
 #Variables associated with resource group module
 ##################################################
