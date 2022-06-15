@@ -72,6 +72,7 @@ module "function_app" {
   python_version                = var.python_version
   powershell_version            = var.powershell_version
   use_custom_runtime            = var.use_custom_runtime
+  site_config                   = var.site_config
   application_settings          = var.application_settings
   connection_strings            = var.connection_strings
   cors                          = var.cors
