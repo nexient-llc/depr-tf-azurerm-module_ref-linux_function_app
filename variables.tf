@@ -52,10 +52,10 @@ variable "instance_resource" {
   }
 }
 
-variable "use_region_abbr" {
+variable "use_azure_region_abbr" {
   description = "Whether to use region abbreviation e.g. eastus -> eus"
   type = bool
-  default = true
+  default = false
 }
 
 variable "resource_types" {
