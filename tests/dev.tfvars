@@ -1,4 +1,4 @@
-logical_product_name = "demofun"
+logical_product_name = "demofunc"
 class_env = "dev"
 resource_group = {
   location = "eastus"
@@ -32,6 +32,7 @@ storage_account = {
   tags = {}
 }
 
+# This must exist earlier
 container_registry = {
   name = "funcappeastusdev000acr000"
   rg_name = "funcapp-eastus-dev-000-rg-000"
@@ -51,7 +52,7 @@ application_settings = {
 }
 
 cors = {
-  allowed_origins = ["vanillavc.com"]
+  allowed_origins = ["*"]
   support_credentials = false
 }
 
