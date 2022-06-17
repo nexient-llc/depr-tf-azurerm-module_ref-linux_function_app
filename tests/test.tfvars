@@ -1,4 +1,4 @@
-logical_product_name = "demofunc"
+logical_product_name = "demofn"
 class_env = "dev"
 resource_group = {
   location = "eastus"
@@ -29,7 +29,9 @@ service_plan = {
 storage_account = {
   account_tier = "Standard"
   account_replication_type = "LRS"
-  tags = {}
+  tags = {
+    "provisioner" = "Terraform"
+  }
 }
 
 # This must exist earlier
@@ -56,4 +58,6 @@ cors = {
   support_credentials = false
 }
 
-deployment_slots = ["stage"]
+deployment_slots = []
+
+use_azure_region_abbr = true
