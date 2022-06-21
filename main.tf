@@ -2,7 +2,7 @@ data "azurerm_client_config" "current" {
 }
 
 module "resource_name" {
-  source    = "git::git@github.com:nexient-llc/tf-module-resource_name.git?ref=main"
+  source    = "github.com/nexient-llc/tf-module-resource_name.git?ref=0.1.0"
 
   for_each = var.resource_types
 
@@ -17,7 +17,7 @@ module "resource_name" {
 }
 
 module "resource_group" {
-  source = "git::git@github.com:nexient-llc/tf-azurerm-module-resource_group.git?ref=main"
+  source = "github.com/nexient-llc/tf-azurerm-module-resource_group.git?ref=0.1.0"
 
   resource_group      = var.resource_group
   resource_group_name = local.resource_group_name
@@ -25,7 +25,7 @@ module "resource_group" {
 }
 
 module "app_insights" {
-  source = "git::git@github.com:nexient-llc/tf-azurerm-module-app_insights.git?ref=main"
+  source = "github.com/nexient-llc/tf-azurerm-module-app_insights.git?ref=0.1.0"
 
   resource_group                = local.resource_group
   app_insights                  = var.app_insights
@@ -37,7 +37,7 @@ module "app_insights" {
 }
 
 module "service_plan" {
-  source = "git::git@github.com:nexient-llc/tf-azurerm-module-service_plan.git?ref=main"
+  source = "github.com/nexient-llc/tf-azurerm-module-service_plan.git?ref=0.1.0"
 
   resource_group                = local.resource_group
   service_plan                  = var.service_plan
@@ -45,7 +45,7 @@ module "service_plan" {
 }
 
 module "storage_account" {
-  source = "git::git@github.com:nexient-llc/tf-azurerm-module-storage_account.git?ref=main"
+  source = "github.com/nexient-llc/tf-azurerm-module-storage_account.git?ref=0.1.0"
 
   resource_group                = local.resource_group
   storage_account_name          = local.storage_account_name
@@ -55,7 +55,7 @@ module "storage_account" {
 }
 
 module "function_app" {
-  source = "git::git@github.com:nexient-llc/tf-azurerm-module-linux_function_app.git?ref=main"
+  source = "github.com/nexient-llc/tf-azurerm-module-linux_function_app.git?ref=0.1.0"
 
   resource_group                = local.resource_group
   storage_account               = local.storage_account
