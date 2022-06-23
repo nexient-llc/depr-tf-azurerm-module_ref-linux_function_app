@@ -83,7 +83,7 @@ module "function_app" {
 }
 
 module "key_vault" {
-  source = "git::git@github.com:nexient-llc/tf-azurerm-module-key_vault.git?ref=main"
+  source = "github.com/nexient-llc/tf-azurerm-module-key_vault.git?ref=0.1.0"
 
   resource_group                = local.resource_group
   key_vault_name                = local.key_vault_name
