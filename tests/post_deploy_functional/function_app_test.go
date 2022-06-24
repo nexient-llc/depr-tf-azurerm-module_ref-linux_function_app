@@ -2,7 +2,6 @@ package test
 
 // Basic imports
 import (
-	"fmt"
 	"os"
 	"path"
 	"testing"
@@ -27,7 +26,6 @@ type TerraTestSuite struct {
 func (suite *TerraTestSuite) SetupSuite() {
 	// Ensure that the destroy method is called even if the apply fails
 	defer func() {
-		fmt.Println("Entering ")
 		if !suite.suiteSetupDone {
 			terraform.Destroy(suite.T(), suite.TerraformOptions)
 		}
